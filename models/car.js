@@ -1,5 +1,6 @@
 class Car {
-    constructor(mark, model, year, price){
+    constructor(id, mark, model, year, price){
+        this.id = id,
         this.mark = mark,
         this.model = model,
         this.year = year,

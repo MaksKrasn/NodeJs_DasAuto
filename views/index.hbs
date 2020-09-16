@@ -1,1 +1,9 @@
 <h2>Hello Maks!!!</h2>
+<ul>
+    {{#each cars}}
+    <li>{{mark}} {{model}} {{year}} - {{price}} USD
+        <a href="/delete/{{this.id}}">Delete</a>
+    </li>
+    {{/each}}
+</ul>
+<a href="/create">Add new car</a>

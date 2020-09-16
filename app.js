@@ -8,7 +8,20 @@ const homeRouter = require('./routes/home.routes')
 
 app.set('view engine', 'hbs')
 
+//регистрации layout`s
+app.engine('hbs', expressHbs({
+    layoutsDir: 'views/layouts',
+    defaultLayout: 'layout',
+    extname: 'hbs'
+}))
+app.use(express.static(__dirname + '/public'))
+//регистрации пути к частичным представлениям
+hbs.registerPartials(__dirname + '/views/partials')
+
 app.use('/', homeRouter)
+/*app.post('/create', function(req, resp) {
+    console.log(req)
+})*/
 
 
 mongoose.connect(config.dbUri, {useNewUrlParser: true, useUnifiedTopology: true}, (err) => {

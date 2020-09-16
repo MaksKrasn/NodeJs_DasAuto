@@ -9,6 +9,10 @@ class CarsService {
         const createdCar = new Car(car);
         return createdCar.save();
     }
+
+    async delete(id){
+        return Car.findByIdAndDelete(id)
+    }
     
 }
 
