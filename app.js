@@ -14,9 +14,13 @@ app.engine('hbs', expressHbs({
     defaultLayout: 'layout',
     extname: 'hbs'
 }))
+
 app.use(express.static(__dirname + '/public'))
 //регистрации пути к частичным представлениям
 hbs.registerPartials(__dirname + '/views/partials')
+
+//app.use(express.json())
+app.use(express.urlencoded({extended: true}))
 
 app.use('/', homeRouter)
 /*app.post('/create', function(req, resp) {

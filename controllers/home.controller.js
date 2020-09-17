@@ -23,7 +23,7 @@ class HomeController {
     }
 
     async delete(req, resp) {
-        console.log(req.params.id)
+        //console.log(req.params.id)
         const id = req.params.id
         carsService.delete(id)
         resp.redirect('../')
@@ -38,11 +38,13 @@ class HomeController {
     }
 
     async saveCar(req, resp) {
-        //if(!req.body) return resp.sendStatus(400);
-        console.log('POST create')
-        console.log(req.body);
-        console.log(req.params);
-        console.log(req.query);
+        if(!req.body) return resp.sendStatus(400);
+        /*console.log('POST create')
+        console.log(req.body.model);
+        console.log(req.body.mark);
+        console.log(req.body.year);*/
+        carsService.create(new Car(0, req.body.mark, req.body.model, req.body.year, req.body.price))
+        console.log(__dirname)
 
         resp.redirect('../')
     }
