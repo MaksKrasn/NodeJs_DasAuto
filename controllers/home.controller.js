@@ -30,12 +30,19 @@ class HomeController {
     }
 
     async create(req, resp) {
+        /*console.log('GET create')
+        console.log(req.body);
+        console.log(req.params);
+        console.log(req.query);*/
         resp.render('create')
     }
 
     async saveCar(req, resp) {
-        if(!req.body) return resp.sendStatus(400);
+        //if(!req.body) return resp.sendStatus(400);
+        console.log('POST create')
         console.log(req.body);
+        console.log(req.params);
+        console.log(req.query);
 
         resp.redirect('../')
     }
