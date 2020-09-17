@@ -25,7 +25,7 @@ class HomeController {
     async delete(req, resp) {
         //console.log(req.params.id)
         const id = req.params.id
-        carsService.delete(id)
+        await carsService.delete(id)
         resp.redirect('../')
     }
 
@@ -43,9 +43,27 @@ class HomeController {
         console.log(req.body.model);
         console.log(req.body.mark);
         console.log(req.body.year);*/
-        carsService.create(new Car(0, req.body.mark, req.body.model, req.body.year, req.body.price))
-        console.log(__dirname)
+        carsService.create(new Car(req.body.id, req.body.mark, req.body.model, req.body.year, req.body.price))
+        
+        resp.redirect('../')
+    }
 
+    async edit(req, resp) {
+        const id = req.params.id
+        let result = await carsService.findOneById(id)
+        //console.log(result)
+        let car = new Car(result.id, result.mark, result.model, result.year, result.price)
+        console.log('editCar:')
+        console.log(car);
+        resp.render('edit', {
+            car: car
+        })
+    }
+
+    async saveEditCar(req, resp) {
+        console.log(req.body)
+        let car = new Car(req.body.id, req.body.mark, req.body.model, req.body.year, req.body.price)
+        await carsService.edit(car)
         resp.redirect('../')
     }
 }

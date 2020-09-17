@@ -8,6 +8,8 @@ const homeRouter = require('./routes/home.routes')
 
 app.set('view engine', 'hbs')
 
+mongoose.set('useFindAndModify', false);
+
 //регистрации layout`s
 app.engine('hbs', expressHbs({
     layoutsDir: 'views/layouts',
